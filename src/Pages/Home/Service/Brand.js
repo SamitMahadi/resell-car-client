@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Service = ({ card }) => {
+const Brand = ({ card }) => {
     const { img } = card
     return (
         <div>
@@ -11,4 +11,4 @@ const Service = ({ card }) => {
     );
 };
 
-export default Service;
+export default Brand;

@@ -1,7 +1,7 @@
 import React from 'react';
-import Service from './Service';
+import Brand from './Brand';
 
-const Services = () => {
+const Brands = () => {
     const cardData = [
         {
             id: 1,
@@ -38,18 +38,18 @@ const Services = () => {
     ]
     return (
         <div>
-            <h1 className='text-5xl text-red-700 text-center my-5 font-bold'>Best Selling Brands</h1>
+            <h1 className='text-5xl text-red-700 text-center mt-12 font-bold'>Best Selling Brands</h1>
             
             <div className='mt-8 grid  gap-4 grid-cols-1 md:grid-cols-2 lg:grid-cols-4 content-center place-items-center'>
                 {
-                    cardData.map(card => <Service
+                    cardData.map(card => <Brand
                         key={card.id}
                         card={card}
-                    ></Service>)
+                    ></Brand>)
                 }
             </div>
         </div>
     );
 };
 
-export default Services;
+export default Brands;
