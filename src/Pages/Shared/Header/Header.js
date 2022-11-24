@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../Assets/logo-light.png'
+import { AuthContext } from '../../../Contexts/AuthProvider';
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext)
+
+
+    const handleLogout = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => console.error(err))
+    }
+
 
     const menuItems = <>
 
@@ -18,7 +28,19 @@ const Header = () => {
           </ul>
         </li>
         <li><Link>Blogs</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        {user?.uid ?
+
+
+            <>
+                <li><Link to='/dashboard'>Dashboard</Link></li>
+                <li> <button onClick={handleLogout} className="btn bg-red-700 rounded-lg">Sign Out</button> </li>
+
+            </>
+
+
+
+            : <li><Link to='/login'>Login</Link></li>
+        }
 
     </>
 

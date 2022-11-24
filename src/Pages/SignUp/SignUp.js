@@ -1,15 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { useForm, Controller } from 'react-hook-form';
+import React, { useContext, useEffect, useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import lambo from '../../Assets/Signupcar.png'
+import { AuthContext } from '../../Contexts/AuthProvider';
+import toast from 'react-hot-toast'
 
 const SignUp = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
+    const { createUser, updateUser } = useContext(AuthContext)
+    const [signUpError, setSignUpError] = useState('');
+
 
     const handleLogin = data => {
         console.log(data);
+        setSignUpError('')
+        createUser(data.email, data.password)
+        .then(result => {
+            const user = result.user;
+            console.log(user)
+            toast('user created successfully')
+            const userInfo = {
+                displayName: data.name
+            }
+
+            updateUser(userInfo)
+            .then(() => {
+                
+            })
+            .catch(err => console.error(err))
+
+        })
+        .catch(error => {
+            console.error(error)
+            setSignUpError(error.message)
+            
+        })    
     }
 
 
@@ -62,14 +89,15 @@ const SignUp = () => {
 
                                 <div className="form-control w-full max-w-xs">
 
-                                    <select className="select select-bordered w-full max-w-xs mt-6 mb-6"{...register("role",{
-                                        required:"your role is required"
+                                    <select name="option" className="select select-bordered w-full max-w-xs mt-6 mb-6"{...register("option",{
+                                        required:"select a option",
+                                       
                                     })}>
                                         <option disabled selected>What Are You?</option>
                                         <option>Buyer</option>
                                         <option>Seller</option>
                                     </select>
-                                    {errors.role && <p className='text-red-700' role="alert">{errors.role?.message}</p>}
+                                    {errors.option && <p className='text-red-700' role="alert">{errors.option?.message}</p>}
 
 
                                 </div>
@@ -79,8 +107,8 @@ const SignUp = () => {
 
 
 
-                                <input className='btn  bg-red-700 text-white w-full' value="Login" type="submit" />
-                                {/* login erro set korte hbbe */}
+                                <input className='btn  bg-red-700 text-white w-full' value="Signup" type="submit" />
+                                {signUpError && <p className="text-red-700">{signUpError}</p>}
                             </form>
                             <p className='mt-3'>Already Have An Account? <Link className='text-red-700' to='/login'>Login Now</Link> </p>
                             <div className="divider">OR</div>

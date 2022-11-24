@@ -1,11 +1,39 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import lcar from '../../Assets/lcar.png'
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../Contexts/AuthProvider';
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const handleLogin = data =>{
+    const { signIn } = useContext(AuthContext);
+    const [loginError, setLoginError] = useState('');
+    const location = useLocation();
+    const navigate = useNavigate();
+
+
+    const from = location.state?.from?.pathname || '/'
+
+
+
+
+
+    const handleLogin = data => {
         console.log(data);
+        setLoginError('')
+        signIn(data.email, data.password)
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+
+
+            })
+            .catch(error => {
+                console.log(error.message)
+                setLoginError(error.message)
+
+
+
+            })
     }
 
 
@@ -45,7 +73,9 @@ const Login = () => {
                                 </div>
 
                                 <input className='btn  bg-red-700 text-white w-full' value="Login" type="submit" />
-                                {/* login erro set korte hbbe */}
+                                {
+                                    loginError && <p className='text-red-700'>{loginError}</p>
+                                }
                             </form>
                             <p className='mt-3'>New to Car Zone? <Link className='text-red-700' to='/signup'>Create New Account</Link> </p>
                             <div className="divider">OR</div>
