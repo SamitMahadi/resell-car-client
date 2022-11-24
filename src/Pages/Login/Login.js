@@ -3,9 +3,11 @@ import lcar from '../../Assets/lcar.png'
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Contexts/AuthProvider';
+import { GoogleAuthProvider } from 'firebase/auth';
+
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, providerLogin } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
@@ -13,7 +15,17 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/'
 
+    const googleProvider = new GoogleAuthProvider()
 
+
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+        .then(result=>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(err=>console.error(err))
+    }
 
 
 
@@ -79,7 +91,7 @@ const Login = () => {
                             </form>
                             <p className='mt-3'>New to Car Zone? <Link className='text-red-700' to='/signup'>Create New Account</Link> </p>
                             <div className="divider">OR</div>
-                            <button className="btn btn-outline w-full font-uppercase hover: text-white  bg-red-700 ">continue with google</button>
+                            <button onClick={handleGoogleSignIn} className="btn btn-outline w-full font-uppercase hover: text-white  bg-red-700 ">continue with google</button>
                         </div>
                     </div>
                 </div>

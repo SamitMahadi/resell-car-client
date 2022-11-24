@@ -4,14 +4,24 @@ import { Link } from 'react-router-dom';
 import lambo from '../../Assets/Signupcar.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import toast from 'react-hot-toast'
+import { GoogleAuthProvider } from 'firebase/auth';
 
 const SignUp = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const { createUser, updateUser } = useContext(AuthContext)
+    const { createUser, updateUser,providerLogin } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('');
 
+    const googleProvider = new GoogleAuthProvider()
+    const handleGoogleSignIn = () => {
+        providerLogin(googleProvider)
+        .then(result=>{
+            const user = result.user;
+            console.log(user);
+        })
+        .catch(err=>console.error(err))
+    }
 
     const handleLogin = data => {
         console.log(data);
@@ -112,7 +122,7 @@ const SignUp = () => {
                             </form>
                             <p className='mt-3'>Already Have An Account? <Link className='text-red-700' to='/login'>Login Now</Link> </p>
                             <div className="divider">OR</div>
-                            <button className="btn btn-outline w-full font-uppercase hover: text-white  bg-red-700 ">continue with google</button>
+                            <button onClick={handleGoogleSignIn} className="btn btn-outline w-full font-uppercase hover: text-white  bg-red-700 ">continue with google</button>
                         </div>
                     </div>
                 </div>
