@@ -3,8 +3,8 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import lambo from '../../Assets/Signupcar.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
-import toast from 'react-hot-toast'
 import { GoogleAuthProvider } from 'firebase/auth';
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
 

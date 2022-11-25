@@ -1,0 +1,74 @@
+[
+    {
+        "category_id":"1",
+        "name":"Audi Q8",
+        "location":"Gulshan,Dhaka",
+        "oprice":"600000",
+        "rprice":"3000000",
+        "img":"https://gaadify.com/wp-content/uploads/2022/03/2022-Audi-Q7-Gaadify-.jpg",
+        "uyear":"2",
+        "sellername":"mokhles mia",
+        "postdate":"nov 24,2022"
+
+    },
+    {
+        "category_id":"1",
+        "name":"Audi Q10 ultra",
+        "location":"Uttara,Dhaka",
+        "oprice":"800000",
+        "rprice":"6000000",
+        "img":"https://carzone.dexignlab.com/xhtml/images/featured/pic3.jpg",
+        "uyear":"1",
+        "sellername":"Arjun Kapoor",
+        "postdate":"nov 25,2022"
+
+    },
+    {
+        "category_id":"2",
+        "name":"Ford Exploer",
+        "location":"Dhanmondi,Dhaka",
+        "oprice":"400000",
+        "rprice":"3000000",
+        "img":"https://autohive-html.themetags.com/assets/img/home1/car-1.jpg",
+        "uyear":"1",
+        "sellername":"jon kabir",
+        "postdate":"nov 24,2022"
+
+    },
+    {
+        "category_id":"2",
+        "name":"Ford everest",
+        "location":"Banani,Dhaka",
+        "oprice":"400000",
+        "rprice":"2000000",
+        "img":"https://i.pinimg.com/736x/22/fb/c7/22fbc7a542404e0e98dc5d890e8157c4.jpg",
+        "uyear":"2",
+        "sellername":"Emran Khan",
+        "postdate":"nov 24,2022"
+
+    },
+    {
+        "category_id":"3",
+        "name":"Nissan Gtr",
+        "location":"Gulshan,Dhaka",
+        "oprice":"300000",
+        "rprice":"2000000",
+        "img":"https://cdn.carbuzz.com/gallery-images/840x560/863000/800/863841.jpg",
+        "uyear":"1.5",
+        "sellername":"Avik Anwar",
+        "postdate":"nov 26,2022"
+
+    },
+    {
+        "category_id":"3",
+        "name":"Nissan x-trail",
+        "location":"mirpur,Dhaka",
+        "oprice":"300000",
+        "rprice":"1000000",
+        "img":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXwhCYEr9PZLAUsyC_GyNIf5Dh4Tq1R_TLVQ&usqp=CAU",
+        "uyear":"1",
+        "sellername":"Amar Khan",
+        "postdate":"nov 26,2022"
+
+    }
+]

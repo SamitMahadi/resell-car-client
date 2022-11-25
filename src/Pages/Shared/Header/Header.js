@@ -32,7 +32,8 @@ const Header = () => {
 
 
             <>
-                <li><Link to='/dashboard'>Dashboard</Link></li>
+                <li><Link to='/myorders'>My Orders</Link></li>
+                <li><Link to='/wishlist'>Wishlist</Link></li>
                 <li> <button onClick={handleLogout} className="btn bg-red-700 rounded-lg">Sign Out</button> </li>
 
             </>
