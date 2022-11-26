@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layouts/Main";
 import Cars from "../../Pages/Cars/Cars/Cars";
+import AllCategory from "../../Pages/Cars/Category/AllCategory";
 import Category from "../../Pages/Cars/Category/Category";
 
 
@@ -34,7 +35,8 @@ import SignUp from "../../Pages/SignUp/SignUp";
             },
             {
                 path:'/category/:id',
-                element: <Category></Category>,
+                element: <AllCategory></AllCategory>,
+                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
                
             },
 

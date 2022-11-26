@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Car from './Car';
+import AllCategory from '../Category/AllCategory';
 
 const Cars = () => {
     const [cars, setCars] = useState([])
@@ -15,6 +16,7 @@ const Cars = () => {
                 cars.map(car => <Car
                 key={car._id}
                 car={car}
+                AllCategory={car}
                 ></Car>)
             }
 
