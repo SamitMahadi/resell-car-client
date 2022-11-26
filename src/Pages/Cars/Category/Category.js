@@ -21,7 +21,7 @@ const Category = () => {
                 {
                     carsCategory.map(category => <Link to={`category/${category.id}`}>
                         <CardCategory
-                            key={category._id}
+                            key={category.id}
                             category={category}
                         ></CardCategory>
                     </Link>)

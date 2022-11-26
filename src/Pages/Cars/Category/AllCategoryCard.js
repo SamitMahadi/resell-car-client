@@ -1,6 +1,6 @@
 import React from 'react';
 
-const AllCategoryCard = ({ car }) => {
+const AllCategoryCard = ({ car, setCar }) => {
     const { name, location, oprice, rprice, img, uyear, sellername, postdate } = car
     return (
         <div>
@@ -16,7 +16,12 @@ const AllCategoryCard = ({ car }) => {
                     <h2 className='text-xl'>Location: {location}</h2>
 
                     <div className="card-actions justify-end">
-                        <button className="btn bg-red-700">Book Now</button>
+                        <label
+                            htmlFor="booking-modal"
+                            className="btn bg-red-700   text-white"
+                            onClick={() => setCar(car)}
+                        >Book Now
+                        </label>
                     </div>
                 </div>
             </div>
