@@ -24,6 +24,7 @@ const AllCategory = () => {
                 {car &&
                     <BookingModal
                         car={car}
+                        setCar={setCar}
                     ></BookingModal>
                 }
 

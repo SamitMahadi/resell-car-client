@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import lambo from '../../Assets/Signupcar.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
@@ -12,6 +12,7 @@ const SignUp = () => {
 
     const { createUser, updateUser,providerLogin } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('');
+    const navigate = useNavigate()
 
     const googleProvider = new GoogleAuthProvider()
     const handleGoogleSignIn = () => {
@@ -37,7 +38,7 @@ const SignUp = () => {
 
             updateUser(userInfo)
             .then(() => {
-                
+                navigate('/')
             })
             .catch(err => console.error(err))
 

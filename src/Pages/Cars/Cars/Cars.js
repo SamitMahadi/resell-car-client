@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Car from './Car';
-import AllCategory from '../Category/AllCategory';
+
 import BookingModal from '../BookingModal/BookingModal';
 
 const Cars = () => {

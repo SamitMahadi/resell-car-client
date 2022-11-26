@@ -9,6 +9,7 @@ import PrivateRoute from '../PrivateRoute/PrivateRoute'
 import Home from '../../Pages/Home/Home/Home';
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
+import DashboardLayout from "../../Layouts/DashboardLayout";
 
 
  const router = createBrowserRouter([
@@ -34,6 +35,7 @@ import SignUp from "../../Pages/SignUp/SignUp";
                 path:'/signup',
                 element: <SignUp></SignUp>
             },
+           
             {
                 path:'/category/:id',
                 element: <PrivateRoute><AllCategory></AllCategory></PrivateRoute>,
@@ -41,6 +43,18 @@ import SignUp from "../../Pages/SignUp/SignUp";
                
             },
 
+            
+
+        ]
+    },
+
+    {
+        path: '/dashboard',
+        element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children: [
+            {
+
+            }
         ]
     }
 
