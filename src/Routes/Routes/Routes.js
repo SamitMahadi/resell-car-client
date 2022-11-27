@@ -10,40 +10,41 @@ import Home from '../../Pages/Home/Home/Home';
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import DashboardLayout from "../../Layouts/DashboardLayout";
+import MyBooking from "../../Pages/Dashboard/MyBooking/MyBooking";
 
 
- const router = createBrowserRouter([
+const router = createBrowserRouter([
 
     {
-        path:'/',
+        path: '/',
         element: <Main></Main>,
-        children:[
+        children: [
 
             {
-                path:'/',
+                path: '/',
                 element: <Home></Home>
             },
             {
-                path:'/cars',
+                path: '/cars',
                 element: <PrivateRoute><Cars></Cars></PrivateRoute>
             },
             {
-                path:'/login',
+                path: '/login',
                 element: <Login></Login>
             },
             {
-                path:'/signup',
+                path: '/signup',
                 element: <SignUp></SignUp>
             },
-           
+
             {
-                path:'/category/:id',
+                path: '/category/:id',
                 element: <PrivateRoute><AllCategory></AllCategory></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/category/${params.id}`)
-               
+                loader: ({ params }) => fetch(`http://localhost:5000/category/${params.id}`)
+
             },
 
-            
+
 
         ]
     },
@@ -53,7 +54,8 @@ import DashboardLayout from "../../Layouts/DashboardLayout";
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
-
+                path: '/dashboard',
+                element: <MyBooking></MyBooking>
             }
         ]
     }
