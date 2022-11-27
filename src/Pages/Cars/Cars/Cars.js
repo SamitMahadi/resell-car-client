@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import Car from './Car';
+import { useQuery } from "@tanstack/react-query";
 
 import BookingModal from '../BookingModal/BookingModal';
 
 const Cars = () => {
-    const [cars, setCars] = useState([])
-    const [car, setCar] = useState(null)
+    // const [cars, setCars] = useState([])
+    const [car, setCar] = useState(null);
 
-    useEffect(() => {
-        fetch('http://localhost:5000/cars')
+    const { data: cars = [] ,refetch,isLoading} = useQuery({
+        queryKey: ['cars'],
+        queryFn: () => fetch('http://localhost:5000/cars')
             .then(res => res.json())
-            .then(data => setCars(data))
-    }, [])
+    })
+
+    if(isLoading){
+        return <p>Loading.......</p>
+    }
+
+    // useEffect(() => {
+    //     fetch('http://localhost:5000/cars')
+    //         .then(res => res.json())
+    //         .then(data => setCars(data))
+    // }, [])
     return (
         <div className='mt-16 mb-16 mx-8 grid  gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
             {
@@ -27,6 +38,7 @@ const Cars = () => {
                 <BookingModal
                     car={car}
                     setCar={setCar}
+                    refetch={refetch}
                 ></BookingModal>
             }
 

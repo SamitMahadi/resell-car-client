@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Contexts/AuthProvider';
 
-const BookingModal = ({car,setCar}) => {
+const BookingModal = ({car,setCar, refetch}) => {
 
     const {name:carName,rprice,img} =car
 
@@ -40,10 +40,11 @@ const BookingModal = ({car,setCar}) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                
                 if (data.acknowledged) {
                     setCar(null)
                     toast.success('Booking Confirmed');
+                    refetch()
                     
                 }
                 else{

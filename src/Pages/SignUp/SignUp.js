@@ -5,50 +5,75 @@ import lambo from '../../Assets/Signupcar.png'
 import { AuthContext } from '../../Contexts/AuthProvider';
 import { GoogleAuthProvider } from 'firebase/auth';
 import toast from 'react-hot-toast';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
 
     const { register, formState: { errors }, handleSubmit } = useForm();
 
-    const { createUser, updateUser,providerLogin } = useContext(AuthContext)
+    const { createUser, updateUser, providerLogin } = useContext(AuthContext)
     const [signUpError, setSignUpError] = useState('');
+    const [createdUserEmail, setCreatedUserEmail] = useState('')
+    const [token] = useToken(createdUserEmail)
     const navigate = useNavigate()
+    if (token) {
+        navigate('/')
+    }
 
     const googleProvider = new GoogleAuthProvider()
     const handleGoogleSignIn = () => {
         providerLogin(googleProvider)
-        .then(result=>{
-            const user = result.user;
-            console.log(user);
-        })
-        .catch(err=>console.error(err))
+            .then(result => {
+                const user = result.user;
+                console.log(user);
+            })
+            .catch(err => console.error(err))
     }
 
     const handleLogin = data => {
         console.log(data);
         setSignUpError('')
         createUser(data.email, data.password)
-        .then(result => {
-            const user = result.user;
-            console.log(user)
-            toast('user created successfully')
-            const userInfo = {
-                displayName: data.name
-            }
+            .then(result => {
+                const user = result.user;
+                console.log(user)
+                toast('user created successfully')
+                const userInfo = {
+                    displayName: data.name
+                }
 
-            updateUser(userInfo)
-            .then(() => {
-                navigate('/')
+                updateUser(userInfo)
+                    .then(() => {
+                        saveUser(data.name, data.email)
+                    })
+                    .catch(err => console.error(err))
+
             })
-            .catch(err => console.error(err))
+            .catch(error => {
+                console.error(error)
+                setSignUpError(error.message)
 
-        })
-        .catch(error => {
-            console.error(error)
-            setSignUpError(error.message)
-            
-        })    
+            })
     }
+
+
+    const saveUser = (name, email) => {
+        const user = { name, email }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                setCreatedUserEmail(email);
+            })
+    }
+
+
+
 
 
 
@@ -100,9 +125,9 @@ const SignUp = () => {
 
                                 <div className="form-control w-full max-w-xs">
 
-                                    <select name="option" className="select select-bordered w-full max-w-xs mt-6 mb-6"{...register("option",{
-                                        required:"select a option",
-                                       
+                                    <select name="option" className="select select-bordered w-full max-w-xs mt-6 mb-6"{...register("option", {
+                                        required: "select a option",
+
                                     })}>
                                         <option disabled selected>What Are You?</option>
                                         <option>Buyer</option>
