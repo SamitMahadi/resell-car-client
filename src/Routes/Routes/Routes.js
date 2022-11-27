@@ -11,6 +11,8 @@ import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import DashboardLayout from "../../Layouts/DashboardLayout";
 import MyBooking from "../../Pages/Dashboard/MyBooking/MyBooking";
+import Blogs from "../../Pages/Blogs/Blogs";
+import Error from "../../Pages/Shared/Error/Error";
 
 
 const router = createBrowserRouter([
@@ -18,6 +20,8 @@ const router = createBrowserRouter([
     {
         path: '/',
         element: <Main></Main>,
+        errorElement: <Error></Error>,
+
         children: [
 
             {
@@ -36,6 +40,10 @@ const router = createBrowserRouter([
                 path: '/signup',
                 element: <SignUp></SignUp>
             },
+            {
+                path: '/blogs',
+                element: <Blogs></Blogs>
+            },
 
             {
                 path: '/category/:id',
@@ -51,6 +59,7 @@ const router = createBrowserRouter([
 
     {
         path: '/dashboard',
+        errorElement: <Error></Error>,
         element: <PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children: [
             {
