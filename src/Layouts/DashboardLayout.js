@@ -5,11 +5,13 @@ import { Outlet, Link } from 'react-router-dom';
 import logo from '../Assets/logo-light.png'
 import { AuthContext } from '../Contexts/AuthProvider';
 import useAdmin from '../Hooks/useAdmin';
+import useSeller from '../Hooks/useSeller';
 
 
 const DashboardLayout = () => {
     const { user } = useContext(AuthContext);
-    const [isAdmin] = useAdmin(user?.email)
+    const [isAdmin] = useAdmin(user?.email);
+    const [isSeller] = useSeller(user?.email);
     return (
         <div>
             <Header></Header>
@@ -37,6 +39,14 @@ const DashboardLayout = () => {
                                     </>
 
 
+
+                                }
+                                {
+                                    isSeller &&
+                                    <>
+                                        <li><Link to='/dashboard/addproducts'>Add Products</Link></li>
+                                        <li><Link to='/dashboard/myproducts'>My Products</Link></li>
+                                    </>
                                 }
 
                             </ul>
