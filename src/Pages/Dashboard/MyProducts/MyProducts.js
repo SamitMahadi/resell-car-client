@@ -6,7 +6,7 @@ const MyProducts = () => {
 
     const { data: cars = [] ,refetch,isLoading} = useQuery({
         queryKey: ['cars'],
-        queryFn: () => fetch('http://localhost:5000/cars')
+        queryFn: () => fetch('https://resell-car-server.vercel.app/cars')
             .then(res => res.json())
     })
     if(isLoading){

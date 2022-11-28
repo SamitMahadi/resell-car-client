@@ -7,7 +7,7 @@ const Category = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/car-categories')
+        fetch('https://resell-car-server.vercel.app/car-categories')
             .then(res => res.json())
             .then(data => setCarsCategory(data))
     }, [])
