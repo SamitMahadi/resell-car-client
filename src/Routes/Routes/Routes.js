@@ -13,6 +13,8 @@ import DashboardLayout from "../../Layouts/DashboardLayout";
 import MyBooking from "../../Pages/Dashboard/MyBooking/MyBooking";
 import Blogs from "../../Pages/Blogs/Blogs";
 import Error from "../../Pages/Shared/Error/Error";
+import AllUsers from "../../Pages/Dashboard/AllUser/AllUsers";
+import AdminRoute from "../adminRoute/AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -65,7 +67,13 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <MyBooking></MyBooking>
-            }
+            },
+            
+            {
+                path: '/dashboard/allusers',
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            
         ]
     }
 

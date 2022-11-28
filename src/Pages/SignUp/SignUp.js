@@ -44,7 +44,7 @@ const SignUp = () => {
 
                 updateUser(userInfo)
                     .then(() => {
-                        saveUser(data.name, data.email)
+                        saveUser(data.name, data.email,data.role)
                     })
                     .catch(err => console.error(err))
 
@@ -57,8 +57,8 @@ const SignUp = () => {
     }
 
 
-    const saveUser = (name, email) => {
-        const user = { name, email }
+    const saveUser = (name, email,role) => {
+        const user = { name, email,role }
         fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
@@ -68,6 +68,7 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 setCreatedUserEmail(email);
             })
     }
@@ -125,14 +126,17 @@ const SignUp = () => {
 
                                 <div className="form-control w-full max-w-xs">
 
-                                    <select name="option" className="select select-bordered w-full max-w-xs mt-6 mb-6"{...register("option", {
-                                        required: "select a option",
+                                    <select type='select' name="role" className="select select-bordered w-full max-w-xs mt-6 mb-6"{...register("role", {
+                                        required: " please select a role",
+
 
                                     })}>
-                                        <option disabled selected>What Are You?</option>
                                         <option>Buyer</option>
                                         <option>Seller</option>
                                     </select>
+
+
+
                                     {errors.option && <p className='text-red-700' role="alert">{errors.option?.message}</p>}
 
 
